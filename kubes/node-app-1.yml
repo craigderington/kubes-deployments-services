@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-1
+spec:
+  selector:
+    matchLabels:
+      app: node-app-1
+      tier: backend
+      track: stable
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: node-app-1
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: node-app-1
+          image: "us.gcr.io/fourth-gearing-136923/nodeapp:latest"
+          ports:
+            - name: http
+              containerPort: 8888

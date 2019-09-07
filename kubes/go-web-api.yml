@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-web-api
+spec:
+  selector:
+    matchLabels:
+      app: go-web-api
+      tier: backend
+      track: stable
+  replicas: 7
+  template:
+    metadata:
+      labels:
+        app: go-web-api
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: go-web-api
+          image: "craigderington/go-web-api:latest"
+          ports:
+            - name: http
+              containerPort: 3000
